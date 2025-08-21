@@ -311,3 +311,47 @@ if (typeof module !== 'undefined' && module.exports) {
         toggleMobileMenu
     };
 }
+
+
+// api wa
+document.getElementById("formContact").addEventListener("submit", function(e){
+    e.preventDefault();
+  
+    let nama = document.getElementById("contactNama").value;
+    let pesan = document.getElementById("contactPesan").value;
+  
+    // Nomor WA Admin (pakai format internasional, tanpa +)
+    let nomorAdmin = "6281292626755"; 
+  
+    // Format pesan otomatis
+    let url = `https://wa.me/${nomorAdmin}?text=Halo%20Admin,%20saya%20${encodeURIComponent(nama)}.%0A%0A${encodeURIComponent(pesan)}`;
+  
+    // Buka WhatsApp
+    window.open(url, "_blank");
+  });
+
+
+
+//   animasi
+
+// Reveal on scroll (aktif saat scroll naik & turun)
+function revealOnScroll() {
+    const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-bottom');
+  
+    for (let i = 0; i < reveals.length; i++) {
+      const windowHeight = window.innerHeight;
+      const elementTop = reveals[i].getBoundingClientRect().top;
+      const elementBottom = reveals[i].getBoundingClientRect().bottom;
+      const elementVisible = 150;
+  
+      // Kalau elemen masuk viewport → tambah animasi
+      if (elementTop < windowHeight - elementVisible && elementBottom > elementVisible) {
+        reveals[i].classList.add("active");
+      } else {
+        reveals[i].classList.remove("active"); // hilangkan lagi kalau keluar viewport
+      }
+    }
+  }
+  
+  window.addEventListener("scroll", revealOnScroll);
+  

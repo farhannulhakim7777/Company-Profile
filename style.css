@@ -256,6 +256,16 @@ body {
   }
 }
 
+
+.nav-links {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2rem;
+  margin-right: 2rem;
+  flex-wrap: nowrap; /* ⬅️ cegah turun baris */
+}
+
 .nav-links a {
   color: var(--neutral-700);
   text-decoration: none;
@@ -265,9 +275,12 @@ body {
   letter-spacing: 0.025em;
   transition: var(--transition-colors);
   position: relative;
-  padding: var(--space-2) var(--space-3);
+  padding: var(--space-2) var(--space-2);
   border-radius: var(--radius-md);
+  white-space: nowrap; /* ⬅️ penting, cegah pecah baris */
 }
+
+
 
 .nav-links a:hover {
   color: var(--primary-600);
@@ -305,6 +318,7 @@ body {
   outline-offset: 2px;
   background: var(--primary-50);
 }
+
 
 /* ===== PROFESSIONAL HAMBURGER MENU ===== */
 .menu-toggle {
@@ -829,6 +843,7 @@ body {
   gap: var(--space-8);
 }
 
+/* ===== REVISED SERVICES SECTION ===== */
 .service-item {
   background: white;
   padding: var(--space-8);
@@ -839,58 +854,34 @@ body {
   border: 1px solid var(--neutral-200);
   position: relative;
   overflow: hidden;
-}
-
-.service-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: var(--gradient-primary);
-  transform: scaleX(0);
-  transition: var(--transition-all);
-  transform-origin: left;
-}
-
-.service-item:hover::before {
-  transform: scaleX(1);
-}
-
-.service-item:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-xl);
-  border-color: var(--primary-200);
+  min-height: 280px; /* biar semua sejajar */
 }
 
 .service-item img {
-  width: 80px;
-  height: 80px;
+  width: 140px;      /* gambar lebih besar */
+  height: 140px;
   margin: 0 auto var(--space-6);
-  padding: var(--space-4);
-  background: var(--gradient-primary);
-  border-radius: var(--radius-2xl);
-  transition: var(--transition-all);
-}
-
-.service-item:hover img {
-  transform: scale(1.1) rotate(5deg);
+  background: none;  /* hilangkan background biru */
+  padding: 0;        /* hilangkan padding biru */
+  border-radius: 0;  /* biar asli gambar jelas */
+  object-fit: contain; 
+  display: block;
 }
 
 .service-item h3 {
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-size: 1.4rem;    /* lebih besar */
+  font-weight: 800;     /* lebih tebal */
   color: var(--neutral-900);
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-2);
   letter-spacing: -0.01em;
 }
 
 .service-item p {
-  color: var(--neutral-600);
+  color: var(--neutral-700); /* lebih gelap dari sebelumnya */
   line-height: 1.7;
-  font-size: 0.95rem;
+  font-size: 1rem;           /* sedikit lebih besar */
 }
+
 
 /* ===== PREMIUM PRODUCTS SECTION - ELEGANT DESIGN ===== */
 /* ===== PREMIUM PRODUCTS SECTION - DESKTOP OPTIMIZATION ===== */
@@ -969,34 +960,38 @@ body {
 /* ===== DESKTOP PRODUCT GRID - SOPHISTICATED LAYOUT ===== */
 .produk-section .layanan-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: var(--space-6);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-8);
   padding: 0 var(--space-4);
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .produk-section .service-item {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  padding: 0 !important;
-  display: flex; flex-direction: column; align-items: center; text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
-.produk-section .service-item::before,
-.produk-section .service-item::after,
-.produk-section .service-item .product-decoration { display: none !important; }
+
 
 .produk-section .service-item img {
-  width: 100%; max-width: 280px; height: auto;
-  padding: 0 !important; background: transparent !important; border: none !important;
-  border-radius: var(--radius-xl); box-shadow: none !important;
+  width: 100% !important;
+  max-width: 200px !important;
+  height: 180px !important;
+  object-fit: contain !important;
+  border-radius: var(--radius-xl) !important;
+  display: block;
+  margin: 0 auto;
 }
 
 .produk-section .service-item p {
-  margin: var(--space-3) 0 0 0;
-  font-size: 1.125rem; font-weight: 700; color: var(--neutral-900);
+  margin-top: var(--space-3) !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  color: var(--neutral-900) !important;
+  text-align: center !important;
 }
 
 .produk-section .service-item:hover p {
@@ -1956,4 +1951,34 @@ footer p {
   .produk-section .service-item:hover img {
     transform: none;
   }
+}
+
+
+/* animasi  */
+/* animasi dasar */
+/* Efek dasar */
+.reveal {
+  opacity: 0;
+  transform: translateX(100px);
+  transition: all 0.8s ease;
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: all 0.8s ease;
+}
+
+.reveal-bottom {
+  opacity: 0;
+  transform: translateY(100px);
+  transition: all 0.8s ease;
+}
+
+/* Saat aktif */
+.reveal.active,
+.reveal-left.active,
+.reveal-bottom.active {
+  opacity: 1;
+  transform: translateX(0) translateY(0);
 }
