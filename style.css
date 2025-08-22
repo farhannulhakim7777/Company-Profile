@@ -573,7 +573,7 @@ body {
 
   display: flex;
   align-items: center;
-  background: url('/img/fotoweb1.jpg') center center / cover no-repeat;
+  background: url('/img/fotoweb1.jpg') center top / cover no-repeat;
   position: relative;
   overflow: hidden;
 }
