@@ -164,6 +164,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   margin: 0;
+  padding: 0;
 }
 
 /* ===== ADVANCED UTILITY CLASSES ===== */
@@ -576,10 +577,14 @@ body {
 /* ===== PREMIUM HERO SECTION - FOTO BACKGROUND ===== */
 .hero-section {
   min-height: 100vh; /* Gunakan vh biasa untuk kompatibilitas */
+  width: 100%;
   min-height: 100dvh; /* Fallback untuk browser modern */
   display: flex;
   align-items: center;
-  background: url('/img/fotoweb1.jpg') center center / cover no-repeat;
+  background: url('/img/fotoweb1.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   position: relative;
   overflow: hidden;
   margin-top: 0; /* Pastikan tidak ada margin */
