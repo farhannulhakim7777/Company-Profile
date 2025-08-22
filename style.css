@@ -588,10 +588,14 @@ body {
   position: relative;
   overflow: hidden;
   margin-top: 0; /* Pastikan tidak ada margin */
-  padding-top: 0; /* Pastikan tidak ada padding */
+  padding-top: 4.5rem; /* Pastikan tidak ada padding */
   /* Pastikan background tidak kepotong */
   background-attachment: scroll;
-  background-repeat: no-repeat;
+}
+@media (min-width: 640px) {
+  .hero-section {
+    padding-top: 5rem; /* ikuti tinggi navbar di layar besar */
+  }
 }
 
 .hero-section::before {
