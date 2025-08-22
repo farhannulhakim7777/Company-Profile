@@ -204,6 +204,8 @@ body {
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   transition: var(--transition-all);
+  /* Pastikan navbar selalu di atas */
+  box-shadow: var(--shadow-sm);
 }
 
 .navbar.scrolled {
@@ -218,6 +220,7 @@ body {
   justify-content: space-between;
   height: 4.5rem;
   padding: 0 var(--space-4);
+  position: relative; /* Pastikan positioning */
 }
 
 @media (min-width: 640px) {
@@ -331,7 +334,8 @@ body {
   background: transparent;
   border-radius: var(--radius-md);
   transition: var(--transition-all);
-  z-index: 9999;
+  z-index: 10003; /* Lebih tinggi dari navbar */
+  position: relative; /* Pastikan positioning */
 }
 
 .menu-toggle:hover {
@@ -387,6 +391,8 @@ body {
   justify-content: flex-start;
   padding-top: 6rem;
   overflow-y: auto;
+  /* Pastikan menu mobile tidak tertutup navbar */
+  margin-top: 0;
 }
 
 #nav-links.show {
@@ -569,13 +575,18 @@ body {
 
 /* ===== PREMIUM HERO SECTION - FOTO BACKGROUND ===== */
 .hero-section {
-  min-height: 100dvh;
-
+  min-height: 100vh; /* Gunakan vh biasa untuk kompatibilitas */
+  min-height: 100dvh; /* Fallback untuk browser modern */
   display: flex;
   align-items: center;
-  background: url('/img/fotoweb1.jpg') center top / cover no-repeat;
+  background: url('/img/fotoweb1.jpg') center center / cover no-repeat;
   position: relative;
   overflow: hidden;
+  margin-top: 0; /* Pastikan tidak ada margin */
+  padding-top: 0; /* Pastikan tidak ada padding */
+  /* Pastikan background tidak kepotong */
+  background-attachment: scroll;
+  background-repeat: no-repeat;
 }
 
 .hero-section::before {
@@ -608,6 +619,7 @@ body {
   max-width: 900px;
   margin: 0 auto;
   padding: 0 var(--space-4);
+  padding-top: 6rem; /* Tambah padding top untuk navbar */
   padding-bottom: 3rem;
 }
 @media (max-width: 480px) {
@@ -622,7 +634,12 @@ body {
     line-height: 1.5;
   }
   .hero-content {
-    padding: 0 1.5rem 3rem; /* kiri-kanan lebih lega + bawah tetap aman */
+    padding: 2rem 1.5rem 3rem; /* Tambah padding top untuk mobile */
+  }
+  
+  .hero-section {
+    min-height: 100vh;
+    background-position: center center;
   }
 }
 
@@ -1494,7 +1511,18 @@ footer p {
 
   .hero-content {
     padding: 0 var(--space-6);
-    padding-top: 2rem;
+    padding-top: 5rem; /* Tambah padding untuk mobile */
+  }
+  
+  /* Pastikan menu toggle selalu terlihat */
+  .menu-toggle {
+    z-index: 10004; /* Lebih tinggi dari semua elemen */
+    position: relative;
+  }
+  
+  /* Pastikan navbar tidak menutupi menu toggle */
+  .navbar {
+    z-index: 10002;
   }
 
   .hero-text h1 {
@@ -1575,9 +1603,9 @@ footer p {
   #nav-links {
     width: 85%; /* jangan penuh layar */
     max-width: none;
-    top: 4rem; /* di bawah navbar */
+    top: 3.5rem; /* sesuaikan dengan tinggi navbar mobile */
     height: auto; /* tidak full height */
-    max-height: calc(100vh - 4rem); /* batasi tinggi */
+    max-height: calc(100vh - 3.5rem); /* batasi tinggi */
     right: -100%; /* tetap gunakan animasi slide-in via right */
     padding: var(--space-5) var(--space-4);
     border-top-left-radius: var(--radius-2xl);
@@ -1587,6 +1615,17 @@ footer p {
   #nav-links .nav-links a {
     font-size: 1rem;
     padding: var(--space-3) var(--space-4);
+  }
+  
+  /* Pastikan hero section tidak kepotong di mobile */
+  .hero-section {
+    min-height: 100vh;
+    background-position: center center;
+    background-size: cover;
+  }
+  
+  .hero-content {
+    padding-top: 4rem; /* Sesuaikan dengan tinggi navbar mobile */
   }
 }
 
